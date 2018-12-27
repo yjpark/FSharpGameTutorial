@@ -9,7 +9,7 @@ nuget FSharp.Core
 
 clitool dotnet-fable
 
-Fable.Import.Pixi
+nuget Fable.Import.Pixi
 
 nuget Fulma
 nuget Fulma.Extensions
