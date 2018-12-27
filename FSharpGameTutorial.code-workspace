@@ -1,10 +1,16 @@
 {
 	"folders": [
 		{
-			"path": "src/Tank.Core"
+			"path": "src/Game.TexturePacker"
+		},
+		{
+			"path": "src/Game.Engine"
 		},
 		{
 			"path": "src/Tank.Content"
+		},
+		{
+			"path": "src/Tank.Core"
 		},
 		{
 			"path": "src/Tank.Playground"

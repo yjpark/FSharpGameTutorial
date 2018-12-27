@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Atlas.fs" />
+    <Compile Include="GameParam.fs" />
+    <Compile Include="BaseGame.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Game.TexturePacker\Game.TexturePacker.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>
