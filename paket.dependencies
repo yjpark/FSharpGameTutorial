@@ -1,0 +1,18 @@
+version 5.193.0
+
+source https://nuget.yjpark.org/nuget/dap
+source https://www.nuget.org/api/v2
+storage: none
+framework: auto-detect
+
+nuget FSharp.Core
+
+nuget Argu
+nuget MonoGame.Content.Builder
+nuget MonoGame.Framework.DesktopGL.Core
+
+nuget Dap.Context
+nuget Dap.Local
+
+# Build
+nuget Dap.Build

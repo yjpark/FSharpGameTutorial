@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "src/Tank.Core"
+		},
+		{
+			"path": "src/Tank.Content"
+		},
+		{
+			"path": "src/Tank.Playground"
+		},
+	],
+    "settings": {
+        "files.exclude": {
+            "**/bin": true,
+            "**/obj": true,
+            "*.log": true,
+            "**/log" : true,
+            ".vs": true,
+            ".vscode": true,
+            ".gitkeep" : true,
+            "node_modules": true
+		},
+		"cSpell.language": "en",
+		"cSpell.words": [
+			"Elmish",
+			"Guid",
+			"failwith",
+			"hardcoded",
+			"initer",
+			"platformer",
+			"sprintf",
+			"struct"
+		]
+	}
+}

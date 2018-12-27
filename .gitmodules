@@ -1,0 +1,3 @@
+[submodule "lib/TexturePacker-MonoGame-Demo"]
+	path = lib/TexturePacker-MonoGame-Demo
+	url = git@github.com:CodeAndWeb/TexturePacker-MonoGame-Demo.git
