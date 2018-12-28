@@ -7,14 +7,10 @@ open Microsoft.Xna.Framework.Input
 
 open Dap.Prelude
 
-type GameParam = {
-    AtlasImage : string
-    IsMouseVisible : bool
-    ClearColor : Color option
-} with
-    static member Create (atlasImage : string, ?isMouseVisible : bool, ?clearColor : Color) : GameParam =
-        {
-            AtlasImage = atlasImage
-            IsMouseVisible = defaultArg isMouseVisible true
-            ClearColor = clearColor
-        }
+let withExitKey (key : Keys) (param : GameParam) : GameParam =
+    {param with ExitKey = Some key}
+
+let withAddon (create : IGame -> 'addon) (param : GameParam) : GameParam =
+    let create' = fun (game : IGame) ->
+        create game :> IAddon
+    {param with Initializers = param.Initializers @ [fun game -> game.Register create']}

@@ -11,6 +11,7 @@ open Dap.Build
 let allProjects =
     !! "src/Game.TexturePacker/*.csproj"
     ++ "src/Game.Engine/*.fsproj"
+    ++ "src/Game.Gui/*.fsproj"
     ++ "src/Tank.Content/*.csproj"
     ++ "src/Tank.Core/*.fsproj"
     ++ "src/Tank.Playground/*.fsproj"

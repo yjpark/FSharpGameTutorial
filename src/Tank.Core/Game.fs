@@ -2,22 +2,22 @@
 module Tank.Core.Game
 
 open TexturePackerLoader
+open Myra
+open Myra.Graphics2D.UI
 
 open Game.Engine
+
 open Tank.Content
+open Myra
 
-let param = GameParam.Create(Textures.Tank, clearColor = Color.Black)
+open Dap.Prelude
 
-type Game () =
-    inherit BaseGame (param)
-    let mutable testSprite : SpriteFrame option = None
+let param =
+    GameParam.Create("Tank", Textures.Tank, clearColor = Color.Black)
+    |> withExitKey Keys.Escape
+    |> withAddon TestAddon.Create
 
-    static member CreateAndRun () =
-        let game = new Game ()
-        game.Setup ()
-        game.Run ()
-        game
-    override this.DoInit () =
-        testSprite <- Some <| this.Atlas.SpriteSheet.Sprite (Sprites.TankBody_huge);
-    override this.DoDraw () =
-        this.Graphics.SpriteRender.Draw (testSprite.Value, Vector2(100.0f, 100.0f))
+let tank (initialize : GameParam -> GameParam) : IGame =
+    param
+    |> initialize
+    |> Game.create

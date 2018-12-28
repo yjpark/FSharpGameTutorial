@@ -3,10 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Types.fs" />
     <Compile Include="Atlas.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="Keyboard.fs" />
+    <Compile Include="BaseAddon.fs" />
+    <Compile Include="Internal/Game.fs" />
     <Compile Include="GameParam.fs" />
-    <Compile Include="BaseGame.fs" />
+    <Compile Include="Game.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.TexturePacker\Game.TexturePacker.csproj" />
