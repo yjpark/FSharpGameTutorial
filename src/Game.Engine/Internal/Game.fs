@@ -6,6 +6,7 @@ open Microsoft.Xna.Framework.Graphics
 open Microsoft.Xna.Framework.Input
 
 open TexturePackerLoader
+open Comora
 
 open Dap.Prelude
 open Game.Engine
@@ -18,6 +19,7 @@ type Game (param : GameParam) =
     let logger : ILogger = getLogger param.Name
     let mutable graphicsManager : GraphicsDeviceManager option = None
     let mutable graphics : Graphics option = None
+    let mutable camera : Camera option = None
     let mutable atlas : Atlas option = None
     let mutable time : GameTime = new GameTime()
     let mutable addons : Map<string, IAddon> = Map.empty
@@ -39,6 +41,8 @@ type Game (param : GameParam) =
             SpriteRender = new SpriteRender (spriteBatch)
             SpriteSheetLoader = spriteSheetLoader
         }
+        camera <- Some <| new Camera (this.GraphicsDevice)
+        camera.Value.LoadContent ()
         atlas <- Some <| Atlas.Create ^<| spriteSheetLoader.Load (param.AtlasImage)
         base.IsMouseVisible <- param.IsMouseVisible
         base.Initialize ()
@@ -62,7 +66,7 @@ type Game (param : GameParam) =
         |> Option.iter (fun color ->
             graphics.Value.Device.Clear (color)
         )
-        graphics.Value.SpriteBatch.Begin ()
+        graphics.Value.SpriteBatch.Begin (camera.Value)
         addons
         |> Map.iter (fun _kind addon -> addon.Draw ())
         graphics.Value.SpriteBatch.End ()
@@ -73,6 +77,7 @@ type Game (param : GameParam) =
         member this.Xna = this :> Microsoft.Xna.Framework.Game
         member __.Param = param
         member __.Graphics = graphics |> Option.get
+        member __.Camera = camera |> Option.get :> ICamera
         member __.Atlas = atlas |> Option.get
         member __.Time = time
         member __.Width = graphicsManager.Value.PreferredBackBufferWidth

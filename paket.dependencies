@@ -11,6 +11,7 @@ nuget Argu
 nuget MonoGame.Content.Builder
 nuget MonoGame.Framework.DesktopGL.Core
 nuget Myra
+nuget Comora
 
 nuget Dap.Context
 nuget Dap.Local

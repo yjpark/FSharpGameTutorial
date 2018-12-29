@@ -4,6 +4,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GuiAddon.fs" />
+    <Compile Include="Builder/Base.fs" />
+    <Compile Include="Builder/Button.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.Engine\Game.Engine.fsproj" />

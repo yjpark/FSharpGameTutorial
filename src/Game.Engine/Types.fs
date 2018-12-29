@@ -18,6 +18,9 @@ type GamePad = Microsoft.Xna.Framework.Input.GamePad
 type Keyboard = Microsoft.Xna.Framework.Input.Keyboard
 type Keys = Microsoft.Xna.Framework.Input.Keys
 
+type ICamera = Comora.ICamera
+type Camera = Comora.Camera
+
 type Graphics = {
     Device : GraphicsDevice
     SpriteBatch : SpriteBatch
@@ -31,6 +34,7 @@ type IGame =
     abstract Xna : Microsoft.Xna.Framework.Game with get
     abstract Param : GameParam with get
     abstract Graphics : Graphics with get
+    abstract Camera : ICamera with get
     abstract Atlas : Atlas with get
     abstract Time : GameTime with get
     abstract Width : int with get
