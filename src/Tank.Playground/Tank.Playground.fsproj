@@ -4,7 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gui.fs" />
+    <Compile Include="CameraGui.fs" />
+    <Compile Include="TankGui.fs" />
+    <Compile Include="MainGui.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

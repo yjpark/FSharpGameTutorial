@@ -1,15 +1,13 @@
 ﻿[<AutoOpen>]
-module Game.Gui.GuiAddon
+module Game.Gui.Internal.Gui
 
 open Myra
 open Myra.Graphics2D.UI
 
 open Game.Engine
+open Game.Gui
 
-[<Literal>]
-let Kind = "Gui"
-
-type GuiAddon (kind : string, game : IGame) =
+type internal Gui (kind : string, game : IGame) =
     inherit BaseAddon (kind, game)
 
     do (
@@ -17,12 +15,8 @@ type GuiAddon (kind : string, game : IGame) =
     )
     let root : Desktop = new Desktop ()
 
-    new (g : IGame) =
-        new GuiAddon(Kind, g)
-
-    static member Create g = new GuiAddon (g)
-
-    member __.Root = root
     override __.Draw () =
         root.Bounds <- new Rectangle(0, 0, game.Width, game.Height)
         root.Render()
+    interface IGui with
+        member __.Root = root

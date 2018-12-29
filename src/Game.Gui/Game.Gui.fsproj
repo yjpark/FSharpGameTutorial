@@ -3,9 +3,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GuiAddon.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="Internal/Gui.fs" />
+    <Compile Include="Gui.fs" />
     <Compile Include="Builder/Base.fs" />
     <Compile Include="Builder/Button.fs" />
+    <Compile Include="Builder/Panel.fs" />
+    <Compile Include="Builder/Helper.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.Engine\Game.Engine.fsproj" />

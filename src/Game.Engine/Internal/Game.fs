@@ -11,10 +11,7 @@ open Comora
 open Dap.Prelude
 open Game.Engine
 
-[<Literal>]
-let ContentRoot = "Content"
-
-type Game (param : GameParam) =
+type internal Game (param : GameParam) =
     inherit Microsoft.Xna.Framework.Game ()
     let logger : ILogger = getLogger param.Name
     let mutable graphicsManager : GraphicsDeviceManager option = None
@@ -23,8 +20,8 @@ type Game (param : GameParam) =
     let mutable atlas : Atlas option = None
     let mutable time : GameTime = new GameTime()
     let mutable addons : Map<string, IAddon> = Map.empty
-    member this.Setup () =
-        this.Content.RootDirectory <- ContentRoot
+    member this.Setup (contentRoot : string) =
+        this.Content.RootDirectory <- contentRoot
         let graphics = new GraphicsDeviceManager (this)
         graphics.PreferredBackBufferWidth <- param.Width
         graphics.PreferredBackBufferHeight <- param.Height

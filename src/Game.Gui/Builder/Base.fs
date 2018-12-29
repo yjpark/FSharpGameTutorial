@@ -40,7 +40,7 @@ type WidgetBuilder<'widget when 'widget :> Widget> () =
         widget.Height <- Nullable h
         widget
     [<CustomOperation("rect")>]
-    member __.Size (widget : 'widget, l : int, t : int, w : int, h : int) =
+    member __.Rect (widget : 'widget, l : int, t : int, w : int, h : int) =
         widget.Left <- l
         widget.Top <- t
         widget.Width <- Nullable w

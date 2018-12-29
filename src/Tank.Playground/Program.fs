@@ -22,7 +22,7 @@ with
             | Verbose -> "Print a lot of output to stdout."
 
 let initialize =
-    withAddon Gui.Create
+    withAddon MainGui.create
 
 let execute (args : ParseResults<Args>) =
     let consoleMinLevel =

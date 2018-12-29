@@ -15,6 +15,6 @@ let ContentRoot = "Content"
 
 let create (param : GameParam) : IGame =
     let game = new Game (param)
-    game.Setup ()
+    game.Setup (ContentRoot)
     game.Run ()
     game :> IGame
