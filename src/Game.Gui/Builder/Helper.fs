@@ -1,6 +1,7 @@
 [<AutoOpen>]
 module Game.Gui.Builder.Helper
 
-let textButton = new TextButtonBuilder ()
+let button = new TextButtonBuilder ()
+let label = new TextBlockBuilder ()
 
-let panel = new PanelBuilder ()
+let menuItem = new MenuItemBuilder ()
