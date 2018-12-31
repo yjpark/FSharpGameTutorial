@@ -16,7 +16,7 @@
 			"path": "src/Tank.Core"
 		},
 		{
-			"path": "src/Tank.Playground"
+			"path": "src/Tank.Sandbox"
 		},
 	],
     "settings": {
@@ -38,6 +38,7 @@
 			"hardcoded",
 			"initer",
 			"platformer",
+			"rect",
 			"sprintf",
 			"struct"
 		]

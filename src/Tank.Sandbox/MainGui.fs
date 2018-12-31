@@ -1,5 +1,6 @@
-﻿module Tank.Playground.MainGui
+﻿module Tank.Sandbox.MainGui
 
+open System
 open Myra
 open Myra.Graphics2D.UI
 
@@ -11,6 +12,9 @@ open Game.Gui.Builder
 
 open Tank.Content
 
+let private initRoot (gui : IGui<Panel>) =
+    gui
+
 let private initMenu (gui : IGui) =
     gui.AddMenuItems (
         menuItem {
@@ -21,5 +25,8 @@ let private initMenu (gui : IGui) =
 
 let create game =
     Gui.create<Panel> game
-    |> CameraGui.init
+    |> CameraGui.init 8 0
+    |> BarrelGui.init 8 200
+    |> TankGui.init 8 330
+    |> initRoot
     |> initMenu

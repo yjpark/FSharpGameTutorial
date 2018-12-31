@@ -5,9 +5,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CameraGui.fs" />
+    <Compile Include="BarrelGui.fs" />
     <Compile Include="TankGui.fs" />
     <Compile Include="MainGui.fs" />
     <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\*.tsx" />
+    <EmbeddedResource Include="Maps\*.tmx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.Gui\Game.Gui.fsproj" />

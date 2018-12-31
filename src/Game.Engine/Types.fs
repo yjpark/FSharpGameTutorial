@@ -7,12 +7,16 @@ open Microsoft.Xna.Framework.Graphics
 open Microsoft.Xna.Framework.Input
 
 open TexturePackerLoader
+open Comora
 
 open Dap.Prelude
+open Microsoft.Xna.Framework.Graphics
 
 type Color = Microsoft.Xna.Framework.Color
 type Vector2 = Microsoft.Xna.Framework.Vector2
 type Rectangle = Microsoft.Xna.Framework.Rectangle
+
+type Transform2D = Transform.Transform2D
 
 type GamePad = Microsoft.Xna.Framework.Input.GamePad
 type Keyboard = Microsoft.Xna.Framework.Input.Keyboard
@@ -26,9 +30,38 @@ type Graphics = {
     SpriteBatch : SpriteBatch
     SpriteRender : SpriteRender
     SpriteSheetLoader : SpriteSheetLoader
-}
+} with
+    member this.Begin (camera : ICamera, ?sortMode : SpriteSortMode) =
+        let sortMode = defaultArg sortMode SpriteSortMode.Deferred
+        this.SpriteBatch.Begin (camera, sortMode)
+    member this.End () =
+        this.SpriteBatch.End ()
+    member this.Batch (camera : ICamera, ?sortMode : SpriteSortMode) =
+        this.End ()
+        this.Begin (camera, ?sortMode = sortMode);
 
-type IGame =
+and IEntity =
+    abstract Game : IGame with get
+    abstract Path : string with get
+    abstract Key : string with get
+    abstract Active : bool with get, set
+    abstract Parent : IEntity option with get
+    abstract Children : IEntity list with get
+    abstract Transform : Transform2D with get
+    abstract Components : IComponent list with get
+    abstract AddChild : string -> IEntity
+    abstract AddComponent' : IComponent -> unit
+    abstract AddComponent : (IEntity -> IComponent) -> unit
+    abstract Update : unit -> unit
+    abstract Draw : unit -> unit
+
+and IComponent =
+    abstract Entity : IEntity with get
+    abstract Enabled : bool with get, set
+    abstract Update : unit -> unit
+    abstract Draw : unit -> unit
+
+and IGame =
     inherit IDisposable
     inherit ILogger
     abstract Xna : Microsoft.Xna.Framework.Game with get
@@ -39,12 +72,15 @@ type IGame =
     abstract Time : GameTime with get
     abstract Width : int with get
     abstract Height : int with get
-    abstract Addons : Map<string, IAddon>
+    abstract Root : IEntity with get
+    abstract Reset : unit -> unit
+    abstract Addons : IAddon list with get
+    abstract Register' : IAddon -> unit
     abstract Register : (IGame -> IAddon) -> unit
+    abstract Batch : ?sortMode : SpriteSortMode -> unit
 
 and IAddon =
     inherit ILogger
-    abstract Kind : string with get
     abstract Game : IGame with get
     abstract Update : unit -> unit
     abstract Draw : unit -> unit

@@ -795,6 +795,7 @@ NUGET
     Thoth.Json.Net (2.5)
       FSharp.Core (>= 4.5.2)
       Newtonsoft.Json (>= 11.0.2)
+    TiledSharp (1.0.1)
   remote: https://nuget.yjpark.org/nuget/dap
     Dap.Archive (0.6.0)
       Dap.Remote (>= 0.6)

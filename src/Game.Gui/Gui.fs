@@ -9,9 +9,6 @@ open Game.Gui.Internal
 
 open Dap.Prelude
 
-[<Literal>]
-let Kind = "Gui"
-
 type IGui with
     member this.AddMenuItems ([<ParamArray>] items : MenuItem array) =
         this.Menu.AddItems items
@@ -25,7 +22,14 @@ type IGui<'root when 'root :> Widget> with
         | _ ->
             failWith "Not_Container" <| this.Root.GetType ()
         this
+    member this.AddChildrenWithOffset (x : int, y: int, [<ParamArray>] children : Widget array) =
+        children
+        |> Array.iter (fun child ->
+            child.Left <- child.Left + x
+            child.Top <- child.Top + y
+        )
+        this.AddChildren children
 
 let create<'root when 'root :> Widget> (game : IGame) =
-    let gui = new Gui<'root> (Kind, game)
+    let gui = new Gui<'root> (game)
     gui :> IGui<'root>

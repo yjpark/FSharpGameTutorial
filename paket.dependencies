@@ -12,6 +12,7 @@ nuget MonoGame.Content.Builder
 nuget MonoGame.Framework.DesktopGL.Core
 nuget Myra
 nuget Comora
+nuget TiledSharp
 
 nuget Dap.Context
 nuget Dap.Local

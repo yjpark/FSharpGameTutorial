@@ -1,10 +1,13 @@
 [<AutoOpen>]
-module Game.Engine.BaseAddon
+module Game.Engine.Base.Addon
 
 open Dap.Prelude
 
+open Game.Engine
+
 [<AbstractClass>]
-type BaseAddon (kind : string, game : IGame) =
+type Addon (game : IGame) as _this =
+    let kind = (_this.GetType ()).Name
     let logger : ILogger = getLogger <| sprintf "%s:%s" game.Param.Name kind
 
     abstract member Update : unit -> unit
@@ -18,7 +21,6 @@ type BaseAddon (kind : string, game : IGame) =
     default __.LateDraw () = ()
 
     interface IAddon with
-        member __.Kind = kind
         member __.Game = game
         member this.Update () = this.Update ()
         member this.Draw () = this.Draw ()

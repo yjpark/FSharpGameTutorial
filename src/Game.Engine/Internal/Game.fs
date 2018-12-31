@@ -10,6 +10,7 @@ open Comora
 
 open Dap.Prelude
 open Game.Engine
+open Microsoft.Xna.Framework.Graphics
 
 type internal Game (param : GameParam) =
     inherit Microsoft.Xna.Framework.Game ()
@@ -19,7 +20,8 @@ type internal Game (param : GameParam) =
     let mutable camera : Camera option = None
     let mutable atlas : Atlas option = None
     let mutable time : GameTime = new GameTime()
-    let mutable addons : Map<string, IAddon> = Map.empty
+    let mutable root : IEntity option = None
+    let mutable addons : IAddon list = []
     member this.Setup (contentRoot : string) =
         this.Content.RootDirectory <- contentRoot
         let graphics = new GraphicsDeviceManager (this)
@@ -28,6 +30,7 @@ type internal Game (param : GameParam) =
         graphics.HardwareModeSwitch <- true
         graphics.ApplyChanges ()
         graphicsManager <- Some graphics
+        root <- Some (Entity (this.AsGame, None, "") :> IEntity)
 
     override this.Initialize () =
         let spriteBatch = new SpriteBatch (this.GraphicsDevice)
@@ -53,23 +56,27 @@ type internal Game (param : GameParam) =
                 this.Exit ()
         )
         addons
-        |> Map.iter (fun _kind addon -> addon.Update ())
-        base.Update (gameTime)
+        |> List.iter (fun addon -> addon.Update ())
+        root
+        |> Option.iter (fun r -> r.Update ())
         addons
-        |> Map.iter (fun _kind addon -> addon.LateUpdate ())
+        |> List.iter (fun addon -> addon.LateUpdate ())
+        base.Update (gameTime)
     override __.Draw (gameTime : GameTime) =
         time <- gameTime
         param.ClearColor
         |> Option.iter (fun color ->
             graphics.Value.Device.Clear (color)
         )
-        graphics.Value.SpriteBatch.Begin (camera.Value)
+        graphics.Value.Begin (camera.Value :> ICamera)
         addons
-        |> Map.iter (fun _kind addon -> addon.Draw ())
-        graphics.Value.SpriteBatch.End ()
+        |> List.iter (fun addon -> addon.Draw ())
+        root
+        |> Option.iter (fun r -> r.Draw ())
+        addons
+        |> List.iter (fun addon -> addon.LateDraw ())
+        graphics.Value.End ()
         base.Draw (gameTime)
-        addons
-        |> Map.iter (fun _kind addon -> addon.LateDraw ())
     interface IGame with
         member this.Xna = this :> Microsoft.Xna.Framework.Game
         member __.Param = param
@@ -79,15 +86,16 @@ type internal Game (param : GameParam) =
         member __.Time = time
         member __.Width = graphicsManager.Value.PreferredBackBufferWidth
         member __.Height = graphicsManager.Value.PreferredBackBufferHeight
+        member __.Root = root |> Option.get
+        member this.Reset () =
+            root <- Some (Entity (this.AsGame, None, "") :> IEntity)
         member __.Addons = addons
+        member this.Register' (addon : IAddon) =
+            addons <- addons @ [addon]
         member this.Register (create : IGame -> IAddon) =
-            let addon = create this
-            let kind = addon.Kind
-            match Map.tryFind kind addons with
-            | Some addon' ->
-                logError this "Register" "Addon_Already_Exist" (kind, addon', addon)
-            | None ->
-                addons <- Map.add kind addon addons
-                logInfo this "Register" "Addon_Added" (kind, addon)
+            this.AsGame.Register' <| create this
+        member __.Batch (?sortMode : SpriteSortMode) =
+            graphics.Value.Batch (camera.Value :> ICamera, ?sortMode = sortMode)
+    member this.AsGame = this :> IGame
     interface ILogger with
         member __.Log evt = logger.Log evt

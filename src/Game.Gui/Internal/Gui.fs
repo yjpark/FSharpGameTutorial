@@ -6,10 +6,11 @@ open Myra
 open Myra.Graphics2D.UI
 
 open Game.Engine
+open Game.Engine.Base
 open Game.Gui
 
-type internal Gui<'root when 'root :> Widget> (kind : string, game : IGame) =
-    inherit BaseAddon (kind, game)
+type internal Gui<'root when 'root :> Widget> (game : IGame) =
+    inherit Addon (game)
 
     do (
         MyraEnvironment.Game <- game.Xna
@@ -27,7 +28,8 @@ type internal Gui<'root when 'root :> Widget> (kind : string, game : IGame) =
         desktop.Widgets.Add root
     )
 
-    override __.Draw () =
+    override __.LateDraw () =
+        game.Batch ()
         desktop.Bounds <- new Rectangle(0, 0, game.Width, game.Height)
         desktop.Render()
     interface IGui with

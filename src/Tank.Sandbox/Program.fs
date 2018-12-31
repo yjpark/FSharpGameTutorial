@@ -1,4 +1,4 @@
-﻿module Tank.Playground.Program
+﻿module Tank.Sandbox.Program
 
 open System
 open Argu
@@ -21,8 +21,16 @@ with
             match this with
             | Verbose -> "Print a lot of output to stdout."
 
-let initialize =
-    withAddon MainGui.create
+let initialize (param : GameParam) =
+    let mutable maskColor = Color.Black
+    maskColor.A <- 200uy
+    param
+    |> withMask (Rectangle (0, 0, 216, param.Height)) maskColor
+    |> withAddon MainGui.create
+    |> withSetup (fun game ->
+        //game.Camera.Zoom <- 0.5f
+        ()
+    )
 
 let execute (args : ParseResults<Args>) =
     let consoleMinLevel =
@@ -38,7 +46,7 @@ let execute (args : ParseResults<Args>) =
 [<STAThread>]
 [<EntryPoint>]
 let main argv =
-    let parser = ArgumentParser.Create<Args>(programName = "Tank.Playground")
+    let parser = ArgumentParser.Create<Args>(programName = "Tank.Sandbox")
     try
         parser.ParseCommandLine argv
         |> execute

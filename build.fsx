@@ -14,7 +14,7 @@ let allProjects =
     ++ "src/Game.Gui/*.fsproj"
     ++ "src/Tank.Content/*.csproj"
     ++ "src/Tank.Core/*.fsproj"
-    ++ "src/Tank.Playground/*.fsproj"
+    ++ "src/Tank.Sandbox/*.fsproj"
 
 DotNet.create NuGet.debug allProjects
 
