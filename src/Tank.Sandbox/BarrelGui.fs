@@ -24,5 +24,5 @@ let init (x : int) (y : int) (gui : IGui<Panel>) =
         },
         boxButton 68 32 "^" ignore,
         boxButton 0 32 "<" <| rotate tank.BarrelBase -45.0f,
-        boxButton 136 32 "<" <| rotate tank.BarrelBase 45.0f
+        boxButton 136 32 ">" <| rotate tank.BarrelBase 45.0f
     )
