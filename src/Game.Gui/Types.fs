@@ -9,7 +9,8 @@ open Game.Engine
 let GuiKind = "Gui"
 
 type Widget = Myra.Graphics2D.UI.Widget
-type TextButton = Myra.Graphics2D.UI.TextButton
+type Label = Myra.Graphics2D.UI.TextBlock
+type Button = Myra.Graphics2D.UI.TextButton
 
 type Menu = Myra.Graphics2D.UI.HorizontalMenu
 type MenuItem = Myra.Graphics2D.UI.MenuItem

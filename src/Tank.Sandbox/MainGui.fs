@@ -28,5 +28,6 @@ let create game =
     |> CameraGui.init 8 0
     |> BarrelGui.init 8 200
     |> TankGui.init 8 330
+    |> TestGui.init 8 530
     |> initRoot
     |> initMenu

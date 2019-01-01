@@ -18,7 +18,7 @@ type internal Game (param : GameParam) =
     let mutable graphicsManager : GraphicsDeviceManager option = None
     let mutable graphics : Graphics option = None
     let mutable camera : Camera option = None
-    let mutable atlas : Atlas option = None
+    let mutable atlas : SpriteSheet option = None
     let mutable time : GameTime = new GameTime()
     let mutable root : IEntity option = None
     let mutable addons : IAddon list = []
@@ -43,7 +43,7 @@ type internal Game (param : GameParam) =
         }
         camera <- Some <| new Camera (this.GraphicsDevice)
         camera.Value.LoadContent ()
-        atlas <- Some <| Atlas.Create ^<| spriteSheetLoader.Load (param.AtlasImage)
+        atlas <- Some <| spriteSheetLoader.Load (param.AtlasImage)
         base.IsMouseVisible <- param.IsMouseVisible
         base.Initialize ()
         param.Initializers
@@ -90,7 +90,12 @@ type internal Game (param : GameParam) =
         member this.Reset () =
             root <- Some (Entity (this.AsGame, None, "") :> IEntity)
         member __.Addons = addons
-        member this.Register' (addon : IAddon) =
+        member __.TryFindAddon<'addon when 'addon :> IAddon> () : 'addon option =
+            let t = typeof<'addon>
+            addons
+            |> List.tryFind (fun c -> c.GetType () = t)
+            |> Option.map (fun c -> c :?> 'addon)
+        member __.Register' (addon : IAddon) =
             addons <- addons @ [addon]
         member this.Register (create : IGame -> IAddon) =
             this.AsGame.Register' <| create this

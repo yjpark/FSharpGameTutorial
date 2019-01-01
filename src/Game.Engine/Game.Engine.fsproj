@@ -3,7 +3,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Atlas.fs" />
+    <Compile Include="MathF.fs" />
+    <Compile Include="Extensions.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="Logging.fs" />
     <Compile Include="Keyboard.fs" />
@@ -16,6 +17,8 @@
     <Compile Include="Game.fs" />
     <Compile Include="Entity.fs" />
     <Compile Include="Tile/Map.fs" />
+    <Compile Include="Comp_/Sprite.fs" />
+    <Compile Include="Helper.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Game.TexturePacker\Game.TexturePacker.csproj" />

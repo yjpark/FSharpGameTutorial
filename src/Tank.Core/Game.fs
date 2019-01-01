@@ -13,15 +13,10 @@ open Myra
 
 open Dap.Prelude
 
-let loadMap (game : IGame) =
-    let map = game.Root.AddChild "map"
-    map.AddComponent <| Map.Create Maps.First
-
 let param =
     GameParam.Create("Tank", Textures.Tank, clearColor = Color.Black)
     |> withExitKey Keys.Escape
-    |> withSetup loadMap
-    |> withAddon TestAddon.Create
+    |> withAddon TankAddon.Create
 
 let tank (initialize : GameParam -> GameParam) : IGame =
     param

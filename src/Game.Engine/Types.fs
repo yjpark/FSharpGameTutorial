@@ -49,6 +49,8 @@ and IEntity =
     abstract Children : IEntity list with get
     abstract Transform : Transform2D with get
     abstract Components : IComponent list with get
+    abstract TryFindChild : string -> IEntity option
+    abstract TryFindComponent<'comp when 'comp :> IComponent> : unit -> 'comp option
     abstract AddChild : string -> IEntity
     abstract AddComponent' : IComponent -> unit
     abstract AddComponent : (IEntity -> IComponent) -> unit
@@ -68,13 +70,14 @@ and IGame =
     abstract Param : GameParam with get
     abstract Graphics : Graphics with get
     abstract Camera : ICamera with get
-    abstract Atlas : Atlas with get
+    abstract Atlas : SpriteSheet with get
     abstract Time : GameTime with get
     abstract Width : int with get
     abstract Height : int with get
     abstract Root : IEntity with get
     abstract Reset : unit -> unit
     abstract Addons : IAddon list with get
+    abstract TryFindAddon<'addon when 'addon :> IAddon> : unit -> 'addon option
     abstract Register' : IAddon -> unit
     abstract Register : (IGame -> IAddon) -> unit
     abstract Batch : ?sortMode : SpriteSortMode -> unit

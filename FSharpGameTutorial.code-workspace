@@ -40,7 +40,8 @@
 			"platformer",
 			"rect",
 			"sprintf",
-			"struct"
+			"struct",
+			"typeof"
 		]
 	}
 }

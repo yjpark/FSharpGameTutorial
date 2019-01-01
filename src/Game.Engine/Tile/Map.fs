@@ -18,7 +18,7 @@ let private loadSprites (entity : IEntity) (tiles : TmxTileset) =
     [
         for kv in tiles.Tiles do
             let name = getTileSpriteName kv.Value
-            let sprite = entity.Game.Atlas.SpriteSheet.Sprite name
+            let sprite = entity.Game.Atlas.Sprite name
             //logEntityWarn entity "Load_Sprite" (name, sprite)
             yield (kv.Key, sprite)
     ] |> Map.ofList
@@ -46,6 +46,6 @@ type Map (map : TmxMap, entity : IEntity) =
                     let y = float32 (tile.Y * map.TileHeight)
                     render.Draw (sprite, Vector2(x, y) - center)
                 )
-    static member  Create (map : TmxMap) (entity : IEntity) =
+    static member Create (map : TmxMap) (entity : IEntity) =
         Map (map, entity)
         :> IComponent
