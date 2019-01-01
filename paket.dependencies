@@ -10,9 +10,11 @@ nuget FSharp.Core
 nuget Argu
 nuget MonoGame.Content.Builder
 nuget MonoGame.Framework.DesktopGL.Core
-nuget Myra
 nuget Comora
 nuget TiledSharp
+nuget Aether.Physics2D
+nuget Aether.Physics2D.Diagnostics
+nuget Myra
 
 nuget Dap.Context
 nuget Dap.Local
