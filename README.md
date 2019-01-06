@@ -1,9 +1,10 @@
-Have been working on game development for a few years now, making game is indeed quite fun, it shares much with other kind of software development, while it also has its uniqueness. Always wanted to write more on it, though not really have good idea about how to start.
+I've been working on game development for a few years now, making game is indeed quite fun, it shares much with other kind of software development, while it also has its uniqueness. Always wanted to write more on it, though not really have good idea about how to start.
 
 I've been working with a couple of game engines, mostly Unity3D, IwGame on Marmalade, Cocos2D, Phaser, created some own frameworks, did experiment with a very simple game engine in Elm as well. Most of them were designed in a similar way, provide similar components and tools. As game developers, we usually don't need to dig much in the game engine itself, but we should have a rather clear understanding about its structure so we can work on it efficiently.
 
 I've decided to write some tutorials on game development, a very basic one, in my mind, it's mostly for developers without much experiences with game development, but curious in it. I'll try to share some of my understandings with game development, explain core components of game engine.
 
+![Screen Shot](https://github.com/yjpark/FSharpGameTutorial/raw/master/screenshots/posts/intro.png)
 
 ## A 2D Tank Game
 Current plan is to create a simple 2D topdown tank game in this tutorial, which is easy to understand, and have enough potential complexity as a real game. Not sure about what will eventually be covered, but at least got following ideas that worth writing about
@@ -46,8 +47,4 @@ I choose MonoGame as the low level platform, will create very simple engine on t
 Was thinking about use Fable and Pixi to create HTML5 games, which will be very cool too, though that approach need to bring more dependencies, and might make the whole process a bit complex for new comers, so I end up with MonoGame.
 
 ## The Plan
-To make sure my library selection is practical, did create some prototype code, which can load tiled map, show some GUI elements, seems to be solid so far, the codes are at:
-
-- https://github.com/yjpark/FSharpGameTutorial
-
 I'll keep working on the prototype, in the meantime, will start writing the tutorial, will be organized by topics, certain branches will be created for each post, also all the contents will be put into the repository as wiki pages.
