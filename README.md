@@ -48,3 +48,5 @@ Was thinking about use Fable and Pixi to create HTML5 games, which will be very 
 
 ## The Plan
 I'll keep working on the prototype, in the meantime, will start writing the tutorial, will be organized by topics, certain branches will be created for each post, also all the contents will be put into the repository as wiki pages.
+
+## Please Check Wiki for List of Finished and Planned Post
