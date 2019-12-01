@@ -16,9 +16,9 @@ type TextButtonBuilder () =
         widget
     [<CustomOperation("onUp")>]
     member __.OnUp (widget : TextButton, onUp : EventArgs -> unit) =
-        widget.Up.Add onUp
+        widget.TouchUp.Add onUp
         widget
     [<CustomOperation("onDown")>]
     member __.OnDown (widget : TextButton, onDown : EventArgs -> unit) =
-        widget.Down.Add onDown
+        widget.TouchDown.Add onDown
         widget

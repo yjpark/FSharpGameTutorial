@@ -5,7 +5,7 @@ open System
 
 open Myra.Graphics2D.UI
 
-type MultipleItemsContainer with
+type IMultipleItemsContainer with
     member this.AddChildren ([<ParamArray>] children : Widget array) =
         children
         |> Array.iter this.Widgets.Add

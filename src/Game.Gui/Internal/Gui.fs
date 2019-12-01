@@ -23,14 +23,14 @@ type internal Gui<'root when 'root :> Widget> (game : IGame) =
 
     do (
         desktop.Widgets.Add menu
-        root.GridPositionY <- 1
+        //root.GridPositionY <- 1
         root.Top <- 32
         desktop.Widgets.Add root
     )
 
     override __.LateDraw () =
         game.Batch ()
-        desktop.Bounds <- new Rectangle(0, 0, game.Width, game.Height)
+        //desktop.Bounds <- new Rectangle(0, 0, game.Width, game.Height)
         desktop.Render()
     interface IGui with
         member __.Menu = menu

@@ -6,11 +6,11 @@ open System
 open Myra.Graphics2D.UI
 open System
 
-type TextBlockBuilder () =
-    inherit WidgetBuilder<TextBlock> ()
-    override __.Zero () = new TextBlock ()
+type LabelBuilder () =
+    inherit WidgetBuilder<Label> ()
+    override __.Zero () = new Label ()
 
     [<CustomOperation("text")>]
-    member __.Text (widget : TextBlock, v : string) =
+    member __.Text (widget : Label, v : string) =
         widget.Text <- v
         widget
