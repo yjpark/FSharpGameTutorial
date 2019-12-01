@@ -8,14 +8,30 @@ open Fake.IO.Globbing.Operators
 
 open Dap.Build
 
-let allProjects =
+module NuGet = Dap.Build.NuGet
+
+let feed =
+    NuGet.Feed.Create (
+        apiKey = NuGet.Environment "API_KEY_nuget_org"
+    )
+
+let libProjects =
+
     !! "src/Game.TexturePacker/*.csproj"
     ++ "src/Game.Engine/*.fsproj"
     ++ "src/Game.Gui/*.fsproj"
+
+let allProjects =
+    libProjects
     ++ "src/Tank.Content/*.csproj"
     ++ "src/Tank.Core/*.fsproj"
     ++ "src/Tank.Sandbox/*.fsproj"
 
-DotNet.create NuGet.debug allProjects
+//let options = NuGet.mixed libProjects
+let options = NuGet.release
+
+DotNet.create options allProjects
+
+NuGet.extend options feed libProjects
 
 Target.runOrDefault DotNet.Build
