@@ -44,7 +44,7 @@ type Map (map : TmxMap, entity : IEntity) =
                 |> Option.iter (fun sprite ->
                     let x = float32 (tile.X * map.TileWidth)
                     let y = float32 (tile.Y * map.TileHeight)
-                    render.Draw (sprite, Vector2(x, y) - center)
+                    render.Draw (sprite, Vector2(x, y) - center, Color.White)
                 )
     static member Create (map : TmxMap) (entity : IEntity) =
         Map (map, entity)

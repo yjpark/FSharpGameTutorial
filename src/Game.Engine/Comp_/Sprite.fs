@@ -17,7 +17,7 @@ type Sprite (_name : string, entity : IEntity) =
     override __.Draw () =
         let render = entity.Game.Graphics.SpriteRender
         render.Draw (sprite, entity.Transform.AbsolutePosition,
-                        color = Nullable color,
+                        color = color,
                         rotation = entity.Transform.AbsoluteRotation,
                         scale = entity.Transform.AbsoluteScale.X)
     member __.Sprite
