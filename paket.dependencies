@@ -9,7 +9,7 @@ nuget FSharp.Core
 
 nuget Argu
 nuget MonoGame.Content.Builder
-nuget MonoGame.Framework.DesktopGL.Core
+nuget MonoGame.Framework.DesktopGL
 nuget Myra
 nuget Comora
 nuget TiledSharp

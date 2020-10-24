@@ -213,7 +213,7 @@ NUGET
       System.Security.Principal.Windows (>= 4.6)
     Mono.Posix.NETStandard (1.0)
     MonoGame.Content.Builder (3.7.0.9)
-    MonoGame.Framework.DesktopGL.Core (3.7.0.7)
+    MonoGame.Framework.DesktopGL (3.8.0.1641)
     MSBuild.StructuredLogger (2.0.152)
       Microsoft.Build (>= 15.8.166)
       Microsoft.Build.Framework (>= 15.8.166)
