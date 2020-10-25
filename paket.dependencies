@@ -8,7 +8,7 @@ framework: auto-detect
 nuget FSharp.Core
 
 nuget Argu
-nuget MonoGame.Content.Builder
+# nuget MonoGame.Content.Builder
 nuget MonoGame.Framework.DesktopGL
 nuget Myra
 nuget Comora
