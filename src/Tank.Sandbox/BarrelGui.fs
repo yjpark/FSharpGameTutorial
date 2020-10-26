@@ -15,6 +15,10 @@ let private rotate (barrel : IEntity) (a : float32) =
     fun _args ->
         barrel.Transform.Angle <- barrel.Transform.Angle + a
 
+let private setAngle (barrel : IEntity) (a : float32) =
+    fun _args ->
+        barrel.Transform.Angle <- a
+
 let init (x : int) (y : int) (gui : IGui<Panel>) =
     let tank = gui.Game.GetAddon<TankAddon> ()
     gui.AddChildrenWithOffset (x, y,
@@ -22,7 +26,7 @@ let init (x : int) (y : int) (gui : IGui<Panel>) =
             text "Barrel"
             pos 0 0
         },
-        boxButton 68 32 "^" ignore,
+        boxButton 68 32 "^" <| setAngle tank.BarrelBase 0.0f,
         boxButton 0 32 "<" <| rotate tank.BarrelBase -45.0f,
         boxButton 136 32 ">" <| rotate tank.BarrelBase 45.0f
     )
