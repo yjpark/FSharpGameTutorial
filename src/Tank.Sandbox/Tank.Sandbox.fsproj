@@ -20,5 +20,8 @@
     <ProjectReference Include="..\Game.Gui\Game.Gui.fsproj" />
     <ProjectReference Include="..\Tank.Core\Tank.Core.fsproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Argu" Version="6.1.1" />
+  </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
